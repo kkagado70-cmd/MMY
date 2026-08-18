@@ -61,8 +61,8 @@ public class AutoMace {
                 if (isShielding && stage == Stage.IDLE) {
                     int axeSlot = findAxeSlot(client);
                     if (axeSlot != -1) {
-                        if (originalSlot == -1) originalSlot = client.player.getInventory().getSelectedSlot();
-                        client.player.getInventory().setSelectedSlot(axeSlot);
+                        if (originalSlot == -1) originalSlot = client.player.getInventory().selected;
+                        client.player.getInventory().selected = axeSlot;
                         client.gameMode.attack(client.player, activeTarget);
                         client.player.swing(InteractionHand.MAIN_HAND);
                         isSwapped = true;
@@ -76,8 +76,8 @@ public class AutoMace {
                     boolean preferDensity = client.player.fallDistance > 7.0;
                     int maceSlot = findBestMaceSlot(client, preferDensity);
                     if (maceSlot != -1) {
-                        if (originalSlot == -1) originalSlot = client.player.getInventory().getSelectedSlot();
-                        client.player.getInventory().setSelectedSlot(maceSlot);
+                        if (originalSlot == -1) originalSlot = client.player.getInventory().selected;
+                        client.player.getInventory().selected = maceSlot;
                         isSwapped = true;
                     }
 
@@ -95,7 +95,7 @@ public class AutoMace {
 
     private static void applyProgressiveGcdAim(Minecraft client, LivingEntity target) {
         Vec3 eyePos = client.player.getEyePosition();
-        
+
         double jitterX = (Math.random() - 0.5) * 0.04;
         double jitterY = (Math.random() - 0.5) * 0.03;
         double jitterZ = (Math.random() - 0.5) * 0.04;
@@ -196,7 +196,7 @@ public class AutoMace {
 
     private static void resetState(Minecraft client) {
         if (isSwapped && originalSlot != -1 && client.player != null) {
-            client.player.getInventory().setSelectedSlot(originalSlot);
+            client.player.getInventory().selected = originalSlot;
         }
         originalSlot = -1;
         isSwapped = false;
@@ -204,4 +204,4 @@ public class AutoMace {
         smoothYaw = 0.0f;
         smoothPitch = 0.0f;
     }
-						  }
+}
