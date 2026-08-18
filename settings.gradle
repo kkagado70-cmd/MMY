@@ -1,7 +1,15 @@
+plugins {
+        id 'net.fabricmc.fabric-.gradle`**:
+Certifique-se de que o `settings.gradle` tenha o bloco de repositório do Fabric:
+
+```groovy
 pluginManagement {
     repositories {
         maven {
-            name = 'Fabric'
+            loom' version '1.17.10'
+        id 'maven-publish'
+}
+name = 'Fabric'
             url = 'https://maven.fabricmc.net/'
         }
         gradlePluginPortal()
